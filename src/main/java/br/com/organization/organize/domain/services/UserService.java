@@ -30,6 +30,10 @@ public class UserService {
         return user;
     }
 
+    public User getUserById(String id) throws Exception {
+        return userManager.getUserById(id);
+    }
+
     public Page<User> getUserList(Pageable pageable) throws Exception {
         return userManager.gerUserList(pageable);
     }

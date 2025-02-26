@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserManagerImpl implements UserManager {
 
@@ -43,5 +45,20 @@ public class UserManagerImpl implements UserManager {
         } catch (Exception e) {
             throw new Exception(e);
         }
+    }
+
+    @Override
+    public User getUserById(String id) throws Exception {
+        Optional<UserEntity> entity = repository.findById(Long.valueOf(id));
+
+        if (entity.isEmpty()) {
+            throw new Exception("User not found");
+        }
+
+        return new User(
+                entity.get().getName(),
+                entity.get().getEmail(),
+                entity.get().getPassword()
+        );
     }
 }

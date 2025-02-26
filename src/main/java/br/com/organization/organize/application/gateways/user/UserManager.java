@@ -7,4 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface UserManager {
     User create(User user) throws Exception;
     Page<User> gerUserList(Pageable pageable) throws Exception;
+    User getUserById(String id) throws Exception;
 }
